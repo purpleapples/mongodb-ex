@@ -16,7 +16,45 @@ function testFindOne(){
             console.log(result);
         });
     }).catch(err => {
-        console.err(err);
+        console.error(err);
     })
+    
 }
-testFindOne();
+//testFindOne();
+function testFind(){
+    client.connect().then(client =>{
+        const db = client.db("mydb");
+
+        // db.collection("friends").find((err, cursor)=>{
+        //     if(err){
+        //         console.error(err);
+        //     }else{
+        //         console.log(cursor);
+        //         console.forEach(item =>{
+        //             console.log(item);
+        //         })
+        //     }
+        // });
+        // db.collection("friends").find().toArray().then(result =>{
+        //     for (let index = 0; index < result.length; index++) {
+        //         console.log(result[index]);
+                
+        //     }
+        // }).catch(err => {
+        //     console.error(err);
+        // });
+        db.collection("friends").find()
+        .skip(2)
+        .limit(2)
+        .sort({name: -1})
+        .toArray().then(result =>{
+            for (let index = 0; index < result.length; index++) {
+                console.log(result[index]);
+                
+            }
+        }).catch(err => {
+            console.error(err);
+        });
+    });   
+};
+testFind();

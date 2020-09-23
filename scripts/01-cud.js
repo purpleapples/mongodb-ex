@@ -37,7 +37,7 @@ function testInsertDocument(docs){
                 console.log(result.insertedCount, "개의 문서가 삽입");
             });            
         }).catch(err =>{
-            console.log(err);
+            console.error(err);
         });
     }else{
         // insert
@@ -48,7 +48,7 @@ function testInsertDocument(docs){
             // collection 객체에 접근 
             db.collection("friends").insertOne(docs,(err, result) =>{
                 if(err){
-                    console.err(err);
+                    console.error(err);
                 }else{
                     console.log(result);
                     console.log(result.insertedCount, "개의 문서 insert");
@@ -92,7 +92,7 @@ function testFindOne(){
             console.log(result);
         });
     }).catch(err => {
-        console.err(err);
+        console.error(err);
     })
 }
 testFindOne();
