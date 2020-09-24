@@ -75,36 +75,35 @@ function testFindBinding(){
 };
 //testFindBinding();
 
-function testFIndByCondition(){
-    client.connect()
-    .then( client => {
+function testFindByCondition(projection, condition){
+    client.connect().then(client => {
         const db = client.db("mydb");
         db.collection("friends").find(
             condition,
-            projection                        
-        ).toArray().then(result =>{
-            for (let index = 0; result < array.length; index++) {
-                console.log(
-                    result[index].age,
-                    result[index].speices
-                );
-                
+            projection
+        ).toArray().then(
+            result =>
+            {   console.log(result);
+                for (let index = 0; index < result.length; index++) {
+                    console.log(
+                        result[index]
+                    );
+                    
+                }
             }
-        })
-        client.close();
-    })
-    .catch( err => {
+        )
+    }).catch(err =>{
         console.error(err);
     });
-};
+}
 // projection 객체 : 1이면 표시, 0이면 표시하지 않음
-testFIndByCondition({condition:{
-    $and:[
-        {age: {$gte:20}},
-        {age: {$lte:50}}
-    ] // 20세 이상 50 세 이하
-}},{name : 1, age: 1, species: 1}
-    
+testFindByCondition( {name : 1, age: 1, species: 1} , 
+    {
+        $and:[
+            {age: {$gte:"10"}},
+            {age: {$lte:"50"}}
+        ] // 20세 이상 50 세 이하
+    }
     );
 
-
+    
