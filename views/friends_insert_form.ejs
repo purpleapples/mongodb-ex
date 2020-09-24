@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add Friend</h1>
+    <table>
+    <tr>
+        <td>이름</td>
+        <td>종족</td>
+        <td>나이</td>
+        <td></td>
+    </tr>
+    <form method="POST" action="/web/friends/save" >
+    <tr>
+        <td>
+            <label for="name"> 이름 :</label>
+            <input type="text" name="name" id="name"> 
+        </td>
+        <td>
+            <label for="species">종족 :</label>
+            <input type="text" name="species" id="species">
+        </td>
+        <td>
+            <label for="age">나이 :</label>
+            <input type="text" name="age" id="age">
+        </td>
+        <td>
+            <input type="submit" value="추가" />
+        </td>
+    </tr>    
+    </form>
+    </table>
+</body>
+</html>
