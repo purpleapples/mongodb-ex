@@ -19,9 +19,11 @@ function testFindOne(){
         console.error(err);
     })
     
-}
+};
+
 //testFindOne();
 function testFind(){
+    // 조건을 만족하는 문서의 cursor를 반환한다.
     client.connect().then(client =>{
         const db = client.db("mydb");
 
@@ -43,6 +45,7 @@ function testFind(){
         // }).catch(err => {
         //     console.error(err);
         // });
+
         db.collection("friends").find()
         .skip(2)
         .limit(2)
@@ -57,4 +60,51 @@ function testFind(){
         });
     });   
 };
-testFind();
+//testFind();
+function testFindBinding(){
+    client.connect().then(client => {
+        const db = client.db("mydb");
+        db.collection("friends").find().toArray().then(result =>{
+            for (let index = 0; index < result.length; index++) {
+                console.log(result[index]);                
+            }
+        })
+    }).catch(err => {
+        console.error(err);
+    })
+};
+//testFindBinding();
+
+function testFIndByCondition(){
+    client.connect()
+    .then( client => {
+        const db = client.db("mydb");
+        db.collection("friends").find(
+            condition,
+            projection                        
+        ).toArray().then(result =>{
+            for (let index = 0; result < array.length; index++) {
+                console.log(
+                    result[index].age,
+                    result[index].speices
+                );
+                
+            }
+        })
+        client.close();
+    })
+    .catch( err => {
+        console.error(err);
+    });
+};
+// projection 객체 : 1이면 표시, 0이면 표시하지 않음
+testFIndByCondition({condition:{
+    $and:[
+        {age: {$gte:20}},
+        {age: {$lte:50}}
+    ] // 20세 이상 50 세 이하
+}},{name : 1, age: 1, species: 1}
+    
+    );
+
+

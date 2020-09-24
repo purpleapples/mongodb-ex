@@ -18,7 +18,7 @@ function testConnect(){
             console.log(client);
         }
     });
-}
+};
 // testConnect();
 
 // insert, insertMany
@@ -57,7 +57,7 @@ function testInsertDocument(docs){
             })
         });
     }
-}
+};
 
 // testInsertDocument({name:"wayne", job:"batman"});
 // testInsertDocument([
@@ -83,7 +83,7 @@ function testDeleteAll(){
     }).catch(err => {
         console.error(err);
     });
-}
+};
 
 function testFindOne(){
     client.connect().then(client =>{
@@ -94,5 +94,22 @@ function testFindOne(){
     }).catch(err => {
         console.error(err);
     })
+};
+//testFindOne();
+
+// Update
+// SQL: UPDATE table SET col=val, col=val ...
+// db.collection.update({조건 객체}, {$set : 변경할 내용})    
+function testUpdate(condition, doc){
+    client.connect().then(client => {
+        const db = client.db("mydb");
+        db.collection("friends").updateMany(condition, {$set:doc}).then(result =>{
+            console.log(result);
+        });
+    }).catch(err => console.error(err));
 }
-testFindOne();
+
+testUpdate(
+    {name:"고길동"},
+    {job: "직장인"}
+);
