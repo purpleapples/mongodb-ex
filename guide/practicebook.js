@@ -1,0 +1,6 @@
+// 연습장이다.
+
+var express = require('express');
+var app = express();
+
+console.log(app.toString());
