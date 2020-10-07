@@ -1,7 +1,10 @@
-// express와 http를 가지고 실제 서버를 구동해 보자
+// http object와 express object를 혼합한 서버구동
+// 이는 node.js 공식 reference에서도 권장하는 방법이다.
+// 역할은 다음과 같이 분리된다.
 
-// 우선 서버는 express instance를 middleware로 사용하는게 수월하다.
-// 그래야 express에 많은 middleware를 담을 수 있으니까?
+// http object는 서버의 구동.
+// express는 request에 대한 요청을 수행하는 부분.
+
 
 const express = require("express");
 const app = express();

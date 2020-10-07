@@ -6,11 +6,21 @@
 // 기본적으로 express의 생성자를 통한 instance 를 app 라는 이름의 참조
 // 명으로 붙인다.
 
-function express01(){
-    var express =require("express")
-    var app = express()    
-}
+// 원래는 http object와 같이 사용하나 여기서는 단독 사용 위주로 설명한다.
 
+
+function express01(){
+    const express =require("express");
+    const app = express();  
+    const port= 27017
+
+    // listener method를 통해서 server를 구동!
+    app.listen(port,()=>{
+        console.log(`Example app listening at http://localhost:${port}`);
+    } );
+    
+}
+express01();
 // routing 방법은 app에 정의된 method가 http의 그것과 이름이 같다.
 
 function routingEx1(){
@@ -31,10 +41,15 @@ function routingEx1(){
     // 모든 request의 요청을 받으며 주로 middleware로써 활용한다.
     app.all('serect', function(req, res, next){
         console.log('Accessing the secret section...');
-        next(); // 남아있는 route 가 있을 경우 사용가능하다.
-                // all은 middle니까 사용가능
-                // 다른 곳에서는 에러 조심
+        next(); // 해당 method가 router 접속의 중간단계일 경우 사용가능한데                 
     });
+
+    const port= 27017
+
+    // listener method를 통해서 server를 구동!
+    app.listen(port,()=>{
+        console.log(`Example app listening at http://localhost:${port}`);
+    } );
 }
 
 // 여기서는 routing method에 함수를 middleware로 사용가능하다는 것을 보여주겠다.
@@ -59,9 +74,16 @@ function routingEx2(){
     // 위와 같이 함수를 작성하고 집어넣으면
     // 해당 함수들을 거친 뒤에 함수 get의 함수로 돌아오고 next를 하면
     // 그다음에 작성된 함수 실행으로 넘어가게 된다.
+
+    const port= 27017
+
+    // listener method를 통해서 server를 구동!
+    app.listen(port,()=>{
+        console.log(`Example app listening at http://localhost:${port}`);
+    } );
 }
 
-// express.Router 는 complete middleware and routing system 의 instance 이다.
+// express.Router 는 complete middleware and routing system 의 instance 이다.(공식 홈페이지에서)
 
 function expressRouterEx1(){
     let express = require("express");
@@ -79,6 +101,13 @@ function expressRouterEx1(){
     router.get('/', function(req, res){
         res.send("About birds");
     });
+
+    const port= 27017
+
+    // listener method를 통해서 server를 구동!
+    app.listen(port,()=>{
+        console.log(`Example app listening at http://localhost:${port}`);
+    } );
 }
 // response 의 주요 method는 다음과 같다.
 

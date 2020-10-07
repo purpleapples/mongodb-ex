@@ -14,5 +14,13 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/purpleapples/nodejs_tutorial.git"
+  },
+  "bugs": {
+    "url": "https://github.com/purpleapples/nodejs_tutorial/issues"
+  },
+  "homepage": "https://github.com/purpleapples/nodejs_tutorial#readme",
   "description": ""
 }

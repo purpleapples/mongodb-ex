@@ -1,7 +1,42 @@
+const { dir } = require("console");
+const { request } = require("express");
 
 
+// 원시적인 방법
+// 1. http instance를 생성 
+// 2. server instance 생성
+// 3. server listener 동작. listen method 이용
+// 4. server.on method 를 통해 request 에 대한 이벤트처리 기술
+// 5. client에게 보낼 데이터 response 에 기술하고 end
+function serverEx1(){
+    const http = require("http");
 
-function httpEx1(){
+    const server = http.createServer();
+    const port = 9999;
+    const ip = "127.0.0.1";
+    server.listen(port, ip, function(){
+        console.log("http has been connected .....");
+    });
+    // 
+     server.on('request', function(req, res){
+
+         res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
+         res.write("<html>");
+         res.write(" <head>");
+         res.write(" <title>node JS Web Test</title>");
+         res.write(" </head>");
+         res.write(" <body>");
+         res.write(" <h1> node JS 응답 페이지 입니다.</h1>");
+         res.write(" </body>");
+         res.write("</html>");
+         res.end();
+     });
+}
+
+// 현대적인 방법 1
+// 1. http instance 생성
+// 2. createServer 하고 바로 callback으로 작성 시작
+function ModernHttpEx1(){
     const http = require("http");
     // 1번 방법
     const server = http.createServer((request, reponse) => {
